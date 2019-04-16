@@ -22,20 +22,14 @@ $("nav").submit(function (event) {
         console.log(response);
 
         var movieDiv = $("<div class='movie'>");
+
+        var title = response.Title
+        var titleHead = $("<div class='row col s12 titleRow'>").text(title);
+        movieDiv.append(titleHead);
         
         var imgURL = response.Poster;
-
-        var image = $("<img>").attr("src", imgURL);
-
+        var image = $("<div class='col s4'>").html($("<img>").attr("src", imgURL));
         movieDiv.append(image);
-
-        var title = response.Title;
-
-        var pTitle = $("<p>").text("title: " + title);
-
-        console.log(pTitle);
-        
-        var rating = response.Rated;
 
         var rating = response.Director;
         var info = $("<div class='col s5'>").text("Director: " + rating);
@@ -75,18 +69,4 @@ $("nav").submit(function (event) {
 
 });
 
-// Director: "Chris Buck, Jennifer Lee"
-
-// Actors: "Kristen Bell, Idina Menzel, Jonathan Groff, Josh Gad"
-
-// Rated: "PG"
-
-// Year: "2013"
-
-// BoxOffice: "$400,736,600"
-
-// Metascore: "74"
-
-// imdbRating: "7.5"
-
-// Plot: "When the newly-crowned Queen Elsa accidentally uses her power to turn things into ice to curse her home in infinite winter, her sister Anna teams up with a mountain man, his playful reindeer, and a snowman to change the weather condition."
+s
