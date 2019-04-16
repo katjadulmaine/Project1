@@ -2,3 +2,7 @@ body {
     background-color: #eceff1 blue-grey lighten-5;
 
 }
+
+.card-panel {
+    margin: 0 0 1rem 0;
+}
