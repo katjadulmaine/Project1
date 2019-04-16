@@ -1,44 +1,13 @@
-function displayMovieInfo() {
+// makes the button animate when enter is pressed.
+$('.input-field').keypress(function(e) {
+    if(e.which == 13) {
+        jQuery(this).blur();
+        jQuery('#submit').focus().click();
+    }
+});
+//===============================================================================================
 
-    var movie = $("#movieSearch").val().trim();
-    var queryURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
-
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
-        var movieDiv = $("<div class='movie'>");
-
-        var rating = response.Rated;
-
-        var pOne = $("<p>").text("Rating: " + rating);
-
-        movieDiv.append(pOne);
-
-        var released = response.Released;
-
-        var pTwo = $("<p>").text("Released: " + released);
-
-        movieDiv.append(pTwo);
-
-        var plot = response.Plot;
-
-        var pThree = $("<p>").text("Plot: " + plot);
-
-        movieDiv.append(pThree);
-
-        var imgURL = response.Poster;
-
-        var image = $("<img>").attr("src", imgURL);
-
-        movieDiv.append(image);
-
-        $("#ombdDisplay").append(movieDiv);
-    });
-
-}
-
-$("#movieSearch").on("keyup", function (event) {
+$("nav").submit(function (event) {
 
     event.preventDefault();
 
@@ -81,6 +50,5 @@ $("#movieSearch").on("keyup", function (event) {
         $("#omdbDisplay").append(movieDiv);
 
     });
-
-
+    
 });

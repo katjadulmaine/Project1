@@ -16,25 +16,25 @@
     <link rel="stylesheet" href="style.css">
 
     <title>Soundtrack Finder</title>
-
 </head>
 
 <body>
+
         <div id="header" class="card-panel #ff5722 deep-orange">
             <span class="white-text">
                 <h1>Search for a Movie Soundtrack</h1>
             </span>
-            <nav>
+            <nav type="submit">
                 <div class="nav-wrapper">
-                    <form>
-                        <div class="input-field">
-                            <input id="movieSearch" type="search" required>
-                            <label class="label-icon" for="movieSearch"><i class="material-icons"></i></label>
-                            <i class="material-icons"></i>
-                        </div>
-                    </form>
+                  <form>
+                    <div class="input-field">
+                      <input id="movieSearch" type="search" required placeholder="Search for movie...">
+                      <label class="label-icon" for="movieSearch"><i class="material-icons">search</i></label>
+                      <i class="material-icons">close</i>
+                    </div>
+                  </form>
                 </div>
-            </nav>
+              </nav>
         </div>
 
         <div class="container" style="width:1600px">
@@ -46,8 +46,8 @@
                                 <div class="card-panel #ff8a65 deep-orange lighten-2">
                                     OMDB
                                 </div>
-                                <div id="omdbDisplay" class="card-content #eceff1 blue-grey lighten-5">
-                                    <p>input</p>
+                                <div id="omdbDisplay" class="card-content #eeeeee grey lighten-3">
+                                    <p></p>
                                 </div>
                             </div>
                         </div>
@@ -65,7 +65,9 @@
                     </div>
                 </div>
             </div>
-                <!-- jQuery -->
+
+
+               <!-- jQuery -->
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
                 <!-- JavaScript -->
