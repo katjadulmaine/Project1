@@ -1,12 +1,19 @@
+.card-panel {
+    margin: 0 0 1rem 0;
+}
+
 body {
     background-color: #eceff1 blue-grey lighten-5;
 
 }
 
-.card-panel {
-    margin: 0 0 1rem 0;
+img {
+    width: 200px;
 }
 
+<<<<<<< HEAD
+=======
 .titleRow {
     font: 50px bold Times new roman;
 }
+>>>>>>> da712cbc4cde52595b4a659339029705b23059d7
