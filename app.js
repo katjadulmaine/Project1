@@ -20,7 +20,6 @@ $("nav").submit(function (event) {
         method: "GET"
     }).then(function (response) {
         console.log(response);
-        console.log(response.Title)
 
         var movieDiv = $("<div class='movie'>");
         
@@ -40,29 +39,64 @@ $("nav").submit(function (event) {
         var rating = response.Rated;
 =======
         var title = response.Title
-        var titleHead = $("<div class='row col-12 titleRow'>").text(title);
+        var titleHead = $("<div class='row col s12 titleRow'>").text(title);
         movieDiv.append(titleHead);
         
         var imgURL = response.Poster;
-        var image = $("<img>").attr("src", imgURL);
+        var image = $("<div class='col s4'>").html($("<img>").attr("src", imgURL));
         movieDiv.append(image);
 >>>>>>> da712cbc4cde52595b4a659339029705b23059d7
 
-        var rating = response.Rated;
-        var pOne = $("<p>").text("Rating: " + rating);
-        movieDiv.append(pOne);
+        var rating = response.Director;
+        var info = $("<div class='col s5'>").text("Director: " + rating);
+        movieDiv.append(info);
 
-        var released = response.Released;
-        var pTwo = $("<p>").text("Released: " + released);
-        movieDiv.append(pTwo);
+        var rating = response.Actors;
+        var info = $("<div class='col s5'>").text("Actors: " + rating);
+        movieDiv.append(info);
+
+        var rating = response.Rated;
+        var info = $("<div class='col s5'>").text("Rated: " + rating);
+        movieDiv.append(info);
+
+        var year = response.Year;
+        var info = $("<div class='col s5'>").text("Released: " + year);
+        movieDiv.append(info);
+        
+        var rating = response.BoxOffice;
+        var info = $("<div class='col s5'>").text("BoxOffice: " + rating);
+        movieDiv.append(info);
+
+        var rating = response.Metascore;
+        var info = $("<div class='col s5'>").text("Metascore: " + rating);
+        movieDiv.append(info);
+
+        var rating = response.imdbRating;
+        var info = $("<div class='col s5'>").text("imdbRating: " + rating);
+        movieDiv.append(info);
 
         var plot = response.Plot;
-        var pThree = $("<p>").text("Plot: " + plot);
-        movieDiv.append(pThree);
-
+        var info = $("<div class='col s5'>").text("Plot: " + plot);        
+        movieDiv.append(info);
 
         $("#omdbDisplay").append(movieDiv);
 
     });
 
 });
+
+// Director: "Chris Buck, Jennifer Lee"
+
+// Actors: "Kristen Bell, Idina Menzel, Jonathan Groff, Josh Gad"
+
+// Rated: "PG"
+
+// Year: "2013"
+
+// BoxOffice: "$400,736,600"
+
+// Metascore: "74"
+
+// imdbRating: "7.5"
+
+// Plot: "When the newly-crowned Queen Elsa accidentally uses her power to turn things into ice to curse her home in infinite winter, her sister Anna teams up with a mountain man, his playful reindeer, and a snowman to change the weather condition."
