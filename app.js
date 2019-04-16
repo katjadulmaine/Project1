@@ -22,7 +22,19 @@ $("nav").submit(function (event) {
         console.log(response);
 
         var movieDiv = $("<div class='movie'>");
+        
+        var imgURL = response.Poster;
 
+        var image = $("<img>").attr("src", imgURL);
+
+        movieDiv.append(image);
+
+        var title = response.Title;
+
+        var pTitle = $("<p>").text("title: " + title);
+
+        console.log(pTitle);
+        
         var rating = response.Rated;
 
         var pOne = $("<p>").text("Rating: " + rating);
@@ -41,11 +53,6 @@ $("nav").submit(function (event) {
 
         movieDiv.append(pThree);
 
-        var imgURL = response.Poster;
-
-        var image = $("<img>").attr("src", imgURL);
-
-        movieDiv.append(image);
 
         $("#omdbDisplay").append(movieDiv);
 
