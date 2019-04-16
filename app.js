@@ -23,7 +23,22 @@ $("nav").submit(function (event) {
         console.log(response.Title)
 
         var movieDiv = $("<div class='movie'>");
+        
+        var imgURL = response.Poster;
 
+        var image = $("<img>").attr("src", imgURL);
+
+        movieDiv.append(image);
+
+        var title = response.Title;
+
+<<<<<<< HEAD
+        var pTitle = $("<p>").text("title: " + title);
+
+        console.log(pTitle);
+        
+        var rating = response.Rated;
+=======
         var title = response.Title
         var titleHead = $("<div class='row col-12 titleRow'>").text(title);
         movieDiv.append(titleHead);
@@ -31,6 +46,7 @@ $("nav").submit(function (event) {
         var imgURL = response.Poster;
         var image = $("<img>").attr("src", imgURL);
         movieDiv.append(image);
+>>>>>>> da712cbc4cde52595b4a659339029705b23059d7
 
         var rating = response.Rated;
         var pOne = $("<p>").text("Rating: " + rating);
