@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Spotify Search</title>
+</head>
+
+<body>
+  <input id="search"></input>
+  <button id="searchButton">Search</button>
+  <a id="ko" target="_blank" href="" >Spotify Soundtrack</a>
+  <script src="http://code.jquery.com/jquery-3.4.0.min.js"
+    integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+    
+  <script>
+    var arr = [];
+    $("#searchButton").on("click", function () {
+      var searchTerm = $("#search").val();
+      var accessToken = sessionStorage.getItem('accessToken');
+      console.log(accessToken);
+      $.ajax({
+        url: 'https://api.spotify.com/v1/search?q=' + searchTerm + '&type=album',
+        method: 'GET',
+        headers: {
+          'Authorization': 'Bearer ' + accessToken
+        }
+      })
+        .then(function (response) {
+          console.log(response.albums.items[0].id);
+
+          $.ajax({
+            url: 'https://api.spotify.com/v1/albums/' + response.albums.items[0].id + '/tracks',
+            method: 'GET',
+            headers: {
+              'Authorization': 'Bearer ' + accessToken
+            }
+          })
+            .then(function (response2) {
+              console.log(response2);
+              var audURL = response2.items[0].external_urls.spotify;
+              $("#ko").attr("href", audURL);
+              console.log(response2);
+              arr = (audURL).split('/');
+              console.log(arr);
+
+            })
+
+            })
+          })
+    
+    
+
+  </script>
+</body>
+
+</html>
