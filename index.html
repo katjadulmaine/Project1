@@ -14,6 +14,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- Link to CSS -->
     <link rel="stylesheet" href="style.css">
+    <!-- Link to FontAwesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <title>Soundtrack Finder</title>
 </head>
@@ -30,35 +32,21 @@
                     <div class="input-field">
                       <input id="movieSearch" type="search" required placeholder="Search for movie...">
                       <label class="label-icon" for="movieSearch"><i class="material-icons">search</i></label>
-                      <i class="material-icons">close</i>
+                      <i class="material-icons" id="close">close</i>
                     </div>
                   </form>
                 </div>
               </nav>
         </div>
 
-        <div class="container" style="width:1600px">
+        <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="row">
                         <div class="row">
                             <div class="col-12">
-                                <div class="card-panel #ff8a65 deep-orange lighten-2">
-                                    OMDB
-                                </div>
                                 <div id="omdbDisplay" class="card-content #eeeeee grey lighten-3">
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card-panel #ffccbc deep-orange lighten-4">
-                                SPOTIFY
-                            </div>
-                            <div id="spotifyDisplay" class="card-content #f5f5f5 grey lighten-4">
-                                input
                             </div>
                         </div>
                     </div>
