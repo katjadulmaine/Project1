@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Spotify API Auth Callback</title>
+</head>
+
+<body>
+  <script>
+    var hash = window.location.hash.substr(1);
+
+    var result = hash.split('&').reduce(function (result, item) {
+      var parts = item.split('=');
+      result[parts[0]] = parts[1];
+      return result;
+    }, {});
+
+    if (!result.hasOwnProperty('access_token')) {
+      console.log("UNEXPECTED ERROR: No `access_token` in url params");
+    } else {
+      sessionStorage.setItem('accessToken', result.access_token);
+      window.location.replace('/search');
+    }
+  </script>
+</body>
+
+</html>
