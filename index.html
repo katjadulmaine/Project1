@@ -24,41 +24,15 @@
 
         <div id="header" class="card-panel #ff5722 deep-orange">
             <span class="white-text">
-                <h1>Search for a Movie Soundtrack <i class="fab fa-spotify"></i> </h1>
+                <h1>Search for a Movie Soundtrack </i> </h1>
             </span>
-            <nav type="submit">
-                <div class="nav-wrapper">
-                  <form>
-                    <div class="input-field">
-                      <input id="movieSearch" type="search" required placeholder="Search for the title of a movie and then hit ENTER">
-                      <label class="label-icon" for="movieSearch"><i class="material-icons">search</i></label>
-                      <i class="material-icons" id="close">close</i>
+                      <a
+                      href="https://accounts.spotify.com/authorize?client_id=61804a7890aa44369ff965e25a525127&response_type=token&redirect_uri=http://localhost:8080/callback"> <i class="fab fa-spotify"></i>Login</a>
                     </div>
                   </form>
                 </div>
               </nav>
         </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="row">
-                        <div class="row">
-                            <div class="col-12">
-                                <div id="omdbDisplay" class="card-content #eeeeee grey lighten-3">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-               <!-- jQuery -->
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-                <!-- JavaScript -->
-                <script src="app.js"></script>
 </body>
 
 </html>
