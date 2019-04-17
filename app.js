@@ -25,44 +25,26 @@ $("nav").submit(function (event) {
         var movieDiv = $("<div class='movie'>");
 
         var title = response.Title
-        var titleHead = $("<div class='row col s12 #ff8a65 deep-orange lighten-2 white-text hoverable titleRow'>").html(title);
+        var titleHead = $("<div class='row col s12 #607d8b blue-grey white-text hoverable titleRow'>").html(title);
         movieDiv.append(titleHead);
         
         var imgURL = response.Poster;
         var image = $("<div class='col s12 m6 center-align imgDiv'>").html($("<img>").attr("src", imgURL));
         movieDiv.append(image);
 
-        var rating = response.Director;
-        var info = $("<div class='col s12 m5'>").html("<label>Director: </label> " + rating);
+        var movieInfo = [
+            "<label>Director: </label> " + response.Director + "<br>",
+            "<label>Actors: </label> " + response.Actors + "<br>",
+            "<label>Rated: </label> " + response.Rated + "<br>",
+            "<label>Released: </label> " + response.Year + "<br>",
+            "<label>Metascore: </label> " + response.Metascore + "<br>",
+            "<label>imdbRating: </label> " + response.imdbRating + "<br>",
+            response.Plot
+        ]
+
+        var info = $("<div class='col s12 m5'>").html(movieInfo);
+
         movieDiv.append(info);
-
-        var actor = response.Actors;
-        var actorInfo = $("<div class='col s12 m5'>").html("<label>Actors: </label> " + actor);
-        movieDiv.append(actorInfo);
-
-        var rated = response.Rated;
-        var ratedInfo = $("<div class='col s12 m5'>").html("<label>Rated: </label> " + rated);
-        movieDiv.append(ratedInfo);
-
-        var year = response.Year;
-        var yearInfo = $("<div class='col s12 m5'>").html("<label>Released: </label> " + year);
-        movieDiv.append(yearInfo);
-        
-        var box = response.BoxOffice;
-        var boxInfo = $("<div class='col s12 m5'>").html("<label>BoxOffice: </label> " + box);
-        movieDiv.append(boxInfo);
-
-        var meta = response.Metascore;
-        var metaInfo = $("<div class='col s12 m5'>").html("<label>Metascore: </label> " + meta);
-        movieDiv.append(metaInfo);
-
-        var imdb = response.imdbRating;
-        var imdbInfo = $("<div class='col s12 m5'>").html("<label>imdbRating: </label> " + imdb);
-        movieDiv.append(imdbInfo);
-
-        var plot = response.Plot;
-        var plotInfo = $("<div class='col s12 m5'>").text(plot);        
-        movieDiv.append(plotInfo);
 
         $("#omdbDisplay").append(movieDiv);
 
