@@ -22,8 +22,9 @@ $("nav").submit(function (event) {
     }).then(function (response) {
         console.log(response);
 
+        $("#omdbDisplay").empty();
         var movieDiv = $("<div class='movie'>");
-
+    
         var title = response.Title
         var titleHead = $("<div class='row col s12 #ff8a65 deep-orange lighten-2 white-text hoverable titleRow'>").html(title);
         movieDiv.append(titleHead);
