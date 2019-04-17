@@ -1,10 +1,8 @@
-// makes the button animate when enter is pressed.
-$('.input-field').keypress(function (e) {
-    if (e.which == 13) {
-        jQuery(this).blur();
-        jQuery('#submit').focus().click();
-    }
-});
+$("#close").on("click", function(){
+    console.log("test");
+    $("#movieSearch").val("");
+    $("#omdbDisplay").empty();
+})
 //===============================================================================================
 
 $("nav").submit(function (event) {
@@ -21,8 +19,9 @@ $("nav").submit(function (event) {
     }).then(function (response) {
         console.log(response);
 
+        $("#omdbDisplay").empty();
         var movieDiv = $("<div class='movie'>");
-
+    
         var title = response.Title
         var titleHead = $("<div class='row col s12 titleRow'>").text(title);
         movieDiv.append(titleHead);
