@@ -14,86 +14,92 @@
     <link rel="stylesheet" href="style.css">
     <!-- Link to FontAwesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
     <title>Soundtrack Finder</title>
 </head>
+
 <body>
-        <div id="header" class="card-panel #546e7a blue-grey darken-1">
-            <span class="white-text">
-                <h1>Search for a Movie Soundtrack <i class="fab fa-spotify"></i> </h1>
-            </span>
-            <nav type="submit">
-                <div class="nav-wrapper">
-                  <form>
-                    <div class="input-field">
-                      <input id="movieSearch" type="search" required placeholder="Search for the title of a movie and then hit ENTER">
-                      <label class="label-icon" for="movieSearch"><i class="material-icons">search</i></label>
-                      <i class="material-icons" id="close">close</i>
-                    </div>
-                  </form>
-                </div>
-              </nav>
-        </div>
-        <div class="container">
-          <div class="row">
-              <div class="col s12 center-align">
-                  <a id="ko" target="_blank" class="waves-effect waves-light blue-grey btn" href="" > <span class="spotifyText"><i class="fab fa-spotify"></i> To Spotify Soundtrack</span></a>
-              </div>
+
+  <div id="header" class="card-panel #546e7a blue-grey darken-1">
+    <h1 class="white-text">Search for a Movie Soundtrack <i class="fab fa-spotify"></i> </h1>
+    <nav type="submit">
+      <div class="nav-wrapper">
+        <form>
+          <div class="input-field">
+            <input id="movieSearch" type="search" required placeholder="Search for the title of a movie and then hit ENTER">
+            <label class="label-icon" for="movieSearch"><i class="material-icons">search</i></label>
+            <i class="material-icons" id="close">close</i>
           </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="row">
-                        <div class="row">
-                            <div class="col-12">
-                                <div id="omdbDisplay" class="card-content #546e7a blue-grey darken-1">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        </form>
+      </div>
+    </nav>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col s12 center-align">
+        <a id="ko" target="_blank" class="waves-effect waves-light blue-grey btn" href="" > <span class="spotifyText"><i class="fab fa-spotify"></i> To Spotify Soundtrack</span></a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="row">
+            <div class="col-12">
+              <div id="omdbDisplay" class="card-content #546e7a blue-grey darken-1">
+              </div>
             </div>
-            </div>
-               <!-- jQuery -->
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-                <!-- JavaScript -->
-                <script src="app.js"></script>
-                <script>
-                    var arr = [];
-                    $("nav").submit(function () {
-                      var searchTerm = $("#movieSearch").val();
-                      var accessToken = sessionStorage.getItem('accessToken');
-                      console.log(accessToken);
-                      $.ajax({
-                        url: 'https://api.spotify.com/v1/search?q=' + searchTerm + '&type=album',
-                        method: 'GET',
-                        headers: {
-                          'Authorization': 'Bearer ' + accessToken
-                        }
-                      })
-                        .then(function (response) {
-                          console.log(response.albums.items[0].id);
-                
-                          $.ajax({
-                            url: 'https://api.spotify.com/v1/albums/' + response.albums.items[0].id + '/tracks',
-                            method: 'GET',
-                            headers: {
-                              'Authorization': 'Bearer ' + accessToken
-                            }
-                          })
-                            .then(function (response2) {
-                              console.log(response2);
-                              var audURL = response2.items[0].external_urls.spotify;
-                              $("#ko").attr("href", audURL);
-                              console.log(response2);
-                              arr = (audURL).split('/');
-                              console.log(arr);
-                
-                            })
-                
-                            })
-                          })
-                    
-                    
-                
-                  </script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+
+    <script>
+
+    var arr = [];
+
+    $("nav").submit(function () {
+      var searchTerm = $("#movieSearch").val();
+      var accessToken = sessionStorage.getItem('accessToken');
+        console.log(accessToken);
+
+      $.ajax({
+        url: 'https://api.spotify.com/v1/search?q=' + searchTerm + '&type=album',
+        method: 'GET',
+        headers: {
+          'Authorization': 'Bearer ' + accessToken
+        }
+      }).then(function (response) {
+        console.log(response.albums.items[0].id);
+
+        $.ajax({
+          url: 'https://api.spotify.com/v1/albums/' + response.albums.items[0].id + '/tracks',
+          method: 'GET',
+          headers: {
+            'Authorization': 'Bearer ' + accessToken
+          }
+          }).then(function (response2) {
+            console.log(response2);
+
+            var audURL = response2.items[0].external_urls.spotify;
+            $("#ko").attr("href", audURL);
+            console.log(response2);
+            arr = (audURL).split('/');
+            console.log(arr);
+          })
+      })
+    });
+        
+        
+    
+    </script>
+    
 </body>
+
 </html>
