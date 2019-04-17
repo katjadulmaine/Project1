@@ -33,6 +33,15 @@
                 </div>
               </nav>
         </div>
+        <script>
+            var originUrl = window.location.origin;
+            if (!originUrl.match(/localhost/)) {
+              originUrl += "/Project1"
+            }
+        
+            var loginLink = document.getElementById('login');
+            loginLink.setAttribute("href", "https://accounts.spotify.com/authorize?client_id=61804a7890aa44369ff965e25a525127&response_type=token&redirect_uri=" + originUrl + "/callback");
+            </script>
 </body>
 
 </html>
