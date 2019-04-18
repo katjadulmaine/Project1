@@ -11,6 +11,8 @@ $("nav").submit(function (event) {
 
     event.preventDefault();
 
+    if(!$("#movieSearch").val().trim()) return;
+
     $("#ko").show(250);
 
     $("#omdbDisplay").empty();
@@ -53,5 +55,7 @@ $("nav").submit(function (event) {
         $("#omdbDisplay").append(movieDiv);
 
     });
+
+ 
 
 });
