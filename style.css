@@ -2,6 +2,11 @@ a {
     color:#00e676;
 }
 
+.btn {
+    display: none;
+    padding: 15px;
+}
+
 .card-panel {
     margin: 0 0 1rem 0;
 }
@@ -28,10 +33,6 @@ img {
     
 }
 
-.btn {
-    display: none;
-    padding: 15px;
-}
 
 .spotifyText {
     color: #00e676;
