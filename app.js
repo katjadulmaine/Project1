@@ -3,6 +3,8 @@ $("#close").on("click", function(){
     $("#movieSearch").val("");
     $("#omdbDisplay").empty();
     $("#ko").hide(400);
+    $("#poprec").show(400);
+    $("#youtubeDisplay").empty();
 })
 
 //===============================================================================================
@@ -14,6 +16,8 @@ $("nav").submit(function (event) {
     if(!$("#movieSearch").val().trim()) return;
 
     $("#ko").show(250);
+
+    $("#poprec").hide(400);
 
     $("#omdbDisplay").empty();
 
@@ -58,4 +62,106 @@ $("nav").submit(function (event) {
 
  
 
+});
+
+var config = {
+    apiKey: "AIzaSyCFBRAs5z0EtK9v2HV17zAMdaRPVTdkHzM",
+    authDomain: "mcdwrgkdproject.firebaseapp.com",
+    databaseURL: "https://mcdwrgkdproject.firebaseio.com",
+    projectId: "mcdwrgkdproject",
+    storageBucket: "mcdwrgkdproject.appspot.com",
+    messagingSenderId: "118525190502"
+};
+firebase.initializeApp(config);
+
+
+var db = firebase.database();
+var searchesRef = db.ref('/searches');
+var recentsRef = db.ref('/recents');
+
+$("nav").submit(function (event) {
+
+    event.preventDefault();
+    
+    $("p").remove();
+    var phrase = $("#movieSearch").val().trim();
+    var phraseRef = searchesRef.child(phrase);
+
+    recentsRef.push(phrase);
+
+    // Do we already have an entry for this phrase?
+    phraseRef.once("value", function (snap) {
+        if (!snap.exists()) {
+            phraseRef.set(1)
+        } else {
+            phraseRef.set(snap.val() + 1);
+        }
+    }); 
+});
+
+recentsRef.orderByKey().limitToLast(3).on("value", function (snap){
+    var recents = snap.val();
+    for (var pushId in recents) {
+        var text = $("<p>").text(recents[pushId]);
+        var lastSearch = $("<div>").append(text);
+        
+        console.log(recents[pushId]);
+        $("#last3").append(lastSearch);
+    }
+});
+searchesRef.on("value", function (snap) {
+    var results = [];
+    
+    var searches = snap.val();
+    for (var search in searches) {
+        results.push({ phrase: search, count: searches[search] })
+    }
+
+    results.sort(function (a, b) {
+        return b.count - a.count;
+    });
+    var top = $("#top5")
+    
+        var topSearch = $("<div>").append(
+            $("<p>").text(results[0].phrase),
+            $("<p>").text(results[1].phrase),
+            $("<p>").text(results[2].phrase),
+            $("<p>").text(results[3].phrase),
+            $("<p>").text(results[4].phrase)
+        );
+
+        $(top).append(topSearch);
+         
+});
+
+$("nav").submit(function (event) {
+
+    event.preventDefault();
+
+    $("#youtubeDisplay").empty();
+
+    var movie = $("#movieSearch").val();
+
+    var queryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + movie + "officialtrailer&h&key=AIzaSyBVB1jCdM8M3mt_5HyEjI4-c42LzjdoM88";
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+        console.log(response.items[0].id.videoId);
+
+        $("#youtubeDisplay").empty();
+        var youtubeDiv = $("<div class='video-container'>");
+        $("<div class='video-container'>");
+        var video = response.items[1].id.videoId;
+        var videoURL = "https://www.youtube.com/embed/" + video;
+        console.log(videoURL);
+
+        var videoplay = $("<iframe>").attr("src", videoURL);
+
+        youtubeDiv.append(videoplay);
+
+        $("#youtubeDisplay").append(youtubeDiv);
+
+    });
 });
