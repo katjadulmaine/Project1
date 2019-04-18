@@ -2,6 +2,7 @@ $("#close").on("click", function(){
     console.log("test");
     $("#movieSearch").val("");
     $("#omdbDisplay").empty();
+    $("#ko").hide(400);
 })
 
 //===============================================================================================
@@ -9,6 +10,8 @@ $("#close").on("click", function(){
 $("nav").submit(function (event) {
 
     event.preventDefault();
+
+    $("#ko").show(250);
 
     $("#omdbDisplay").empty();
 
@@ -26,7 +29,7 @@ $("nav").submit(function (event) {
         var movieDiv = $("<div class='movie'>");
     
         var title = response.Title
-        var titleHead = $("<div class='row col s12 #607d8b blue-grey white-text hoverable titleRow'>").html(title);
+        var titleHead = $("<div class='row col s12 #90a4ae blue-grey lighten-2 white-text z-depth-3 titleRow'>").html(title);
         movieDiv.append(titleHead);
         
         var imgURL = response.Poster;

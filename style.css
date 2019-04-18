@@ -7,7 +7,7 @@ a {
 }
 
 body {
-    background-color: #eceff1 blue-grey lighten-5;
+    background-color: #eceff1;
 
 }
 h1 {
@@ -28,10 +28,16 @@ img {
     
 }
 
+.btn {
+    display: none;
+    padding: 15px;
+}
+
 .spotifyText {
     color: #00e676;
 }
 
 .titleRow {
     font: 50px bold Times new roman;
+    border-radius: 5px;
 }
